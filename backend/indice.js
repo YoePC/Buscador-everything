@@ -22,3 +22,8 @@ async function scanDisk(dir) {
     }catch (e){}
 }
 module.exports = {scanDisk, archIndex }
+
+// Mostrar errores durante el escaneo para facilitar depuración
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught exception:', err)
+})

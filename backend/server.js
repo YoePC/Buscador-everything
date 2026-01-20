@@ -7,9 +7,12 @@ app.use(cors())
 
 console.log("Indexando archivos...")
 scanDisk("D:/")
-console.log("Indexados:", archIndex.lenght)
+console.log("Indexando en background...")
+// Nota: corregimos 'length' y evitamos bloquear la salida del proceso con un log incorrecto
+setTimeout(() => console.log("Indexados:", archIndex.length), 2000)
 
-app.get("/buscando", (req, res) =>{
+// Endpoint expuesto como /search para coincidir con el frontend
+app.get("/search", (req, res) =>{
     const q = (req.query.q || "").toLowerCase()
 
     const results = archIndex.filter(f =>
